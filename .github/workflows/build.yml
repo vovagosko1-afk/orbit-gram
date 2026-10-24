@@ -13,11 +13,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Set up JDK 17
+    - name: Set up JDK 11
       uses: actions/setup-java@v4
       with:
-        distribution: 'temurin'
-        java-version: '17'
+        distribution: 'zulu'
+        java-version: '11'
 
     - name: Accept Android SDK licenses
       run: |
@@ -26,10 +26,10 @@ jobs:
     - name: Build APK with Gradle
       run: |
         chmod +x gradlew
-        ./gradlew assembleFossRelease
+        ./gradlew assembleFossRelease --no-daemon
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: apk-foss-release
-        path: TMessagesProj/build/outputs/apk/foss/release/TMessagesProj-foss-release-unsigned.apk
+        path: TMessagesProj/build/outputs/apk/foss/release/*.apk
