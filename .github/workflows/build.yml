@@ -21,6 +21,9 @@ jobs:
 
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
+      with:
+        build-tools-version: 34.0.0
+        android-version: platform-34
 
     - name: Build APK with Gradle
       run: |
